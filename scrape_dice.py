@@ -95,18 +95,22 @@ class db_connection:
         })
 
 # filtering only fultime jobs
-url = "https://www.dice.com/jobs?countryCode=US&radius=30&radiusUnit=mi&page=1&pageSize=1000&filters.employmentType=FULLTIME&language=en"
+url = "https://www.dice.com/jobs?location=USA&latitude=37.09024&longitude=-95.712891&countryCode=US&locationPrecision=Country&radius=30&radiusUnit=mi&page=1&pageSize=1000&filters.employmentType=FULLTIME&language=en"
 browser.visit(url)  
 
 #Initiate database session
 session = db_connection()
 
 page = 1
-while page <= 37:
+time_start = time.time()
+while page <= 35:
     # Scrape and store in DB
     cards = scrape_job_cards_dice(browser)
     for card in cards:
         session.store_job(*scrape_job_dice(card))
+
+        time_elapsed = time.time() - time_start
+        print(f"Time Elapsed[min]: {time_elapsed/60}")
         time.sleep(1)
     
     # Navigate to next page
