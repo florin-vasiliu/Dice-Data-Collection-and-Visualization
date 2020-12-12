@@ -102,17 +102,23 @@ browser.visit(url)
 session = db_connection()
 
 page = 1
+
+counter = 0
 time_start = time.time()
 while page <= 35:
+    time.sleep(2*60)
     # Scrape and store in DB
     cards = scrape_job_cards_dice(browser)
     for card in cards:
         session.store_job(*scrape_job_dice(card))
 
+        counter+=1
         time_elapsed = time.time() - time_start
+        print(f"Page: {page}")
+        print(f"Jobs Scraped: {counter}")
         print(f"Time Elapsed[min]: {time_elapsed/60}")
         time.sleep(1)
     
     # Navigate to next page
-    time.sleep(2*60)
     browser.click_link_by_partial_text('»')
+    page+=1
