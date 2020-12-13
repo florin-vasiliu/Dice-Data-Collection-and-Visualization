@@ -6,96 +6,65 @@ import time
 from datetime import date, timedelta
 import re
 
-executable_path = {'executable_path': 'chromedriver.exe'}
-# Headless False for displaying the browser
-browser = Browser('chrome', **executable_path, headless=False)
+# date conversion
+def convert_date(date_string):
+        if date_string.find("hours ago")>-1:
+            return date.today()
+        elif date_string.find("hour ago")>-1:
+            return date.today()
+        elif date_string.find("minutes ago")>-1:
+            return date.today()
+        elif date_string.find("minute ago")>-1:
+            return date.today()
+        elif date_string.find("days ago")>-1:
+            days_to_substract = re.compile(r'\d+')
+            days_to_substract = days_to_substract.findall(date_string)[0]
+            return date.today()-timedelta(days=int(days_to_substract))
+        elif date_string.find("day ago")>-1:
+            return date.today()-timedelta(days=1)
 
-def scrape_job_cards_dice(browser):
-    # get html page
-    html = browser.html
-
-    #parse request to BeautifulSoup object
-    soup = bs(html, 'html.parser')
-
-    #get page job cards
-    return soup.find_all('div', class_="card")
-
-# Store in db
-class db_connection:
+class scrape:
     def __init__(self):
-        #connect to database
-        connection_string='mongodb://localhost:27017'
-        client = pymongo.MongoClient(connection_string)
-        #define database for storage
-        db = client.dice_db
-        #drop all stored data
-        #db.jobs.drop()
-        db.jobs
-        #define collection to store data
-        self.jobs_collection = db.jobs
+        executable_path = {'executable_path': 'chromedriver.exe'}
+        # Headless False for displaying the browser
+        self.browser = Browser('chrome', **executable_path, headless=False)
+    
+    def visit_page(self, location="USA", page_size=100, employment_type = "FULLTIME"):
+        # filtering only fultime jobs
+        url = f"https://www.dice.com/jobs?location={location}&latitude=37.09024&longitude=-95.712891&countryCode=US&locationPrecision=Country&radius=30&radiusUnit=mi&page=1&pageSize={page_size}&filters.employmentType={employment_type}&language=en"
+        self.browser.visit(url) 
+        
+    def scrape_job_cards_dice(self):
+        # get html page
+        html = self.browser.html
 
-    # date conversion
-    def convert_date(self, date_string):
-            if date_string.find("hours ago")>-1:
-                return date.today()
-            elif date_string.find("hour ago")>-1:
-                return date.today()
-            elif date_string.find("minutes ago")>-1:
-                return date.today()
-            elif date_string.find("minute ago")>-1:
-                return date.today()
-            elif date_string.find("days ago")>-1:
-                days_to_substract = re.compile(r'\d+')
-                days_to_substract = days_to_substract.findall(date_string)[0]
-                return date.today()-timedelta(days=int(days_to_substract))
-            elif date_string.find("day ago")>-1:
-                return date.today()-timedelta(days=1)
+        #parse request to BeautifulSoup object
+        soup = bs(html, 'html.parser')
 
-    def scrape_job_dice(self, job_card):
-        #initiate fields
-        job_title = ""
-        job_company = ""
-        job_salary = ""
-        job_location = ""
-        job_date = ""
-        job_description = ""
+        #get page job cards and create generator for each card
+        cards = soup.find_all('div', class_="card")
+        for card in cards:
+            #initiate fields
+            job_title = ""
+            job_company = ""
+            job_location = ""
+            job_date = ""
+            job_descr_link = ""
+            
+            #get fields from card
+            job_title = card.find_all(class_="card-title-link")[0].text
+            job_company = card.find_all(class_="card-company")[0].a.text
+            job_location = card.find_all(id="searchResultLocation")[0].text
+            job_date = card.find_all(class_="posted-date")[0].text
+            job_date = str(convert_date(job_date))
+            job_descr_link = card.find_all(class_="card-title-link")[0].get('href')
+            
+            #yield the results
+            yield {"job_title":job_title, "job_company":job_company, \
+                   "job_location":job_location, "job_date":job_date, "job_descr_link":job_descr_link}
+            
+    def scrape_job_dice(self, job_descr_link):
 
-        job_title = job_card.find_all(class_="card-title-link")[0].text
-        job_company = job_card.find_all(class_="card-company")[0].a.text
-
-        # get location
-        job_location = job_card.find_all(id="searchResultLocation")[0].text
-
-        # job date
-        job_date = job_card.find_all(class_="posted-date")[0].text
-        job_date = str(self.convert_date(job_date))
-
-        # check if record is in database before scraping description
-        field_to_check = self.jobs_collection.find_one({"$and":[
-            {"job_title":job_title},
-            {"job_company": job_company},
-            {"job_location": job_location},
-                                                 ]})
-        if field_to_check is not None:
-            if field_to_check["job_date"] != job_date:
-                self.jobs_collection.update_one({
-                    "job_title":job_title,
-                    "job_company": job_company,
-                    "job_location": job_location},
-                    {"$set":{"job_date":job_date}}
-                )
-                print("""Job already found in database and the date was updated
-                
-                """)
-                return None
-            else:
-                print("""Job already found in database
-                
-                """)
-                return None
-
-        # get full job descr html
-        job_descr_link = job_card.find_all(class_="card-title-link")[0].get('href')
         job_descr_html = requests.get(job_descr_link)
         soup = bs(job_descr_html.text, 'html.parser') 
 
@@ -117,24 +86,39 @@ class db_connection:
         except:
             job_description = ''
 
+        return {"job_salary":job_salary, "job_type":job_type, "job_description":job_description}
 
-
-        #print all found details
-
-        print(f"""Inserted into database:
-            job_title: {job_title},
-            job_company: {job_company},
-            job_salary: {job_salary},
-            job_location: {job_location},
-            job_date: {job_date},
-            job_type: {job_type},
-            job_description: {job_description[:30]}
+# Store in db
+class db_connection:
+    def __init__(self):
+        #connect to database
+        connection_string='mongodb://localhost:27017'
+        client = pymongo.MongoClient(connection_string)
+        #define database for storage
+        db = client.dice_db
+        #drop all stored data
+        #db.jobs.drop()
+        db.jobs
+        #define collection to store data
+        self.jobs_collection = db.jobs
+        
+    def check_job_presence(self, job_title, job_company, job_location, job_date):
+        # check if record is in database before scraping description
+        field_to_check = self.jobs_collection.find_one({"$and":[
+            {"job_title":job_title},
+            {"job_company": job_company},
+            {"job_location": job_location},
+            {"job_date":job_date}
+                                                 ]})
+        if field_to_check is not None:
+                print("""Job already found in database
+                
+                """)
+                return False
+        else:
+            return True
             
-            """)
-
-        return [job_title, job_company, job_salary, job_location, job_date, job_type, job_description]
-
-    def store_job(self, title, company, salary, location, date, job_type, description):
+    def store_job(self, title, company, location, date, salary, job_type, description):
         self.jobs_collection.insert_one({ \
         "job_title": title, \
         "job_company": company, \
@@ -144,35 +128,66 @@ class db_connection:
         "job_type": job_type, \
         "job_description": description \
         })
+        
+        print(f"""Inserted into database:
+            job_title: {title},
+            job_company: {company},
+            job_salary: {salary},
+            job_location: {location},
+            job_date: {date},
+            job_type: {job_type},
+            job_description: {description[:30]}
+            
+            """)
 
-# filtering only fultime jobs
-url = "https://www.dice.com/jobs?location=USA&latitude=37.09024&longitude=-95.712891&countryCode=US&locationPrecision=Country&radius=30&radiusUnit=mi&page=1&pageSize=1000&filters.employmentType=FULLTIME&language=en"
-browser.visit(url)  
-
-#Initiate database session
+#Initiate database session and browser
 session = db_connection()
+browser = scrape()
 
+# Visit first page
+time_to_sleep_for_page_change = 10
+time_to_sleep_for_scraping_job_descr = 1
+browser.visit_page()
+time.sleep(time_to_sleep_for_page_change)
+
+# Start looping
 page = 1
 
-counter = 0
+job_inserted_counter = 0
 time_start = time.time()
-while page <= 35:
-    time.sleep(10)
+while page <= 350:
     # Scrape and store in DB
-    cards = scrape_job_cards_dice(browser)
-    for card in cards:
-        # Scrape result will be None if card is already in database
-        scrape_result = session.scrape_job_dice(card)
-        if scrape_result is not None:
-            session.store_job(*scrape_result)
-            counter+=1
-
+    for card_data in browser.scrape_job_cards_dice():
+        # if card data is in database then scrape job description and store data
+        if not session.check_job_presence( \
+            card_data["job_title"], \
+            card_data["job_company"], \
+            card_data["job_location"], \
+            card_data["job_date"], \
+                                        ):
+            # scrape job description and wait
+            job_descr_dict = browser.scrape_job_dice(card_data["job_descr_link"])
+            time.sleep(time_to_sleep_for_scraping_job_descr)
+            
+            # store data
+            session.store_job(
+                card_data["job_title"], \
+                card_data["job_company"], \
+                card_data["job_location"], \
+                card_data["job_date"], \
+                job_descr_dict["job_salary"], \
+                job_descr_dict["job_type"], \
+                job_descr_dict["job_description"], \
+                
+            )
+            job_inserted_counter+=1
+            
         time_elapsed = time.time() - time_start
         print(f"Page: {page}")
-        print(f"New Jobs Scraped: {counter}")
+        print(f"New Jobs Scraped: {job_inserted_counter}")
         print(f"Time Elapsed[min]: {time_elapsed/60}")
-        time.sleep(1)
     
     # Navigate to next page
-    browser.click_link_by_partial_text('»')
+    browser.browser.click_link_by_partial_text('»')
+    time.sleep(time_to_sleep_for_page_change)
     page+=1
