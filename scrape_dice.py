@@ -51,7 +51,10 @@ def scrape_job_dice(job_card):
         job_type = ''
 
     # job description
-    job_description = soup.find_all(id="jobdescSec")[0].get_text()
+    try:
+        job_description = soup.find_all(id="jobdescSec")[0].get_text()
+    except:
+        job_description = ''
 
     # job date
     job_date = job_card.find_all(class_="posted-date")[0].text
