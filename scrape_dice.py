@@ -146,7 +146,7 @@ class db_connection:
         })
 
 # filtering only fultime jobs
-url = "https://www.dice.com/jobs?location=USA&latitude=37.09024&longitude=-95.712891&countryCode=US&locationPrecision=Country&radius=30&radiusUnit=mi&page=1&pageSize=100&filters.employmentType=FULLTIME&language=en"
+url = "https://www.dice.com/jobs?location=USA&latitude=37.09024&longitude=-95.712891&countryCode=US&locationPrecision=Country&radius=30&radiusUnit=mi&page=1&pageSize=1000&filters.employmentType=FULLTIME&language=en"
 browser.visit(url)  
 
 #Initiate database session
