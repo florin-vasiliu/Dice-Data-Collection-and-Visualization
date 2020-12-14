@@ -4,7 +4,19 @@ from bs4 import BeautifulSoup as bs
 import requests
 import time
 from datetime import date, timedelta
+from geopy.geocoders import Nominatim
 import re
+
+# find coordinates for a given address
+def find_coordinates(address):     
+    # Try with address as is
+    geolocator = Nominatim(user_agent="DreamTeam")
+    location = geolocator.geocode(address)
+    if location is None:
+        return {"location_latitude":"", "location_longitude":""}
+    else:
+        return {"location_latitude":location.latitude, "location_longitude":location.longitude}
+
 
 # date conversion
 def convert_date(date_string):
@@ -111,31 +123,33 @@ class db_connection:
             {"job_date":job_date}
                                                  ]})
         if field_to_check is not None:
-                print("""Job already found in database
-                
-                """)
-                return False
+                # print("Job already found in database")
+                return True
         else:
-            return True
+            return False
             
-    def store_job(self, title, company, location, date, salary, job_type, description):
+    def store_job(self, title, company, location, latitude, longitude, date, salary, job_type, description):
         self.jobs_collection.insert_one({ \
         "job_title": title, \
         "job_company": company, \
         "job_salary": salary, \
         "job_location": location, \
+        "location_latitude": latitude, \
+        "location_longitude": longitude, \
         "job_date": date, \
         "job_type": job_type, \
         "job_description": description \
         })
         
         print(f"""Inserted into database:
-            job_title: {title},
-            job_company: {company},
-            job_salary: {salary},
-            job_location: {location},
-            job_date: {date},
-            job_type: {job_type},
+            job_title: {title}
+            job_company: {company}
+            job_salary: {salary}
+            job_location: {location}
+            location_latitude: {latitude}
+            location_longitude: {longitude}
+            job_date: {date}
+            job_type: {job_type}
             job_description: {description[:30]}
             
             """)
@@ -147,7 +161,7 @@ browser = scrape()
 # Visit first page
 time_to_sleep_for_page_change = 10
 time_to_sleep_for_scraping_job_descr = 1
-browser.visit_page()
+browser.visit_page(page_size=1000)
 time.sleep(time_to_sleep_for_page_change)
 
 # Start looping
@@ -167,6 +181,7 @@ while page <= 350:
                                         ):
             # scrape job description and wait
             job_descr_dict = browser.scrape_job_dice(card_data["job_descr_link"])
+            coordinates = find_coordinates(card_data["job_location"])
             time.sleep(time_to_sleep_for_scraping_job_descr)
             
             # store data
@@ -174,6 +189,8 @@ while page <= 350:
                 card_data["job_title"], \
                 card_data["job_company"], \
                 card_data["job_location"], \
+                coordinates["location_latitude"], \
+                coordinates["location_longitude"], \
                 card_data["job_date"], \
                 job_descr_dict["job_salary"], \
                 job_descr_dict["job_type"], \
@@ -182,10 +199,14 @@ while page <= 350:
             )
             job_inserted_counter+=1
             
-        time_elapsed = time.time() - time_start
-        print(f"Page: {page}")
-        print(f"New Jobs Scraped: {job_inserted_counter}")
-        print(f"Time Elapsed[min]: {time_elapsed/60}")
+            time_elapsed = time.time() - time_start
+            print(f"Page: {page}")
+            print(f"New Jobs Scraped: {job_inserted_counter}")
+            print(f"Time Elapsed[min]: {time_elapsed/60}")
+    time_elapsed = time.time() - time_start
+    print(f"Page: {page}")
+    print(f"New Jobs Scraped: {job_inserted_counter}")
+    print(f"Time Elapsed[min]: {time_elapsed/60}")
     
     # Navigate to next page
     browser.browser.click_link_by_partial_text('»')
