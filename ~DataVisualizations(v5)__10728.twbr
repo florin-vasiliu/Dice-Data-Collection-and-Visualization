@@ -1,0 +1,1099 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20202.20.1110.1614                               -->
+<workbook source-build='2020.2.8 (20202.20.1110.1614)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <Heatmap />
+    <ISO8601PeriodTypes />
+    <MapboxVectorStylesAndLayers />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <_.fcp.SetMembershipControl.true...SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <WindowsPersistSimpleIdentifiers />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='18.1'>
+      <aliases enabled='yes' />
+      <column caption='Skills considered' datatype='string' name='[Big Data Parameter]' param-domain-type='list' role='measure' type='nominal' value='&quot;matplotlib&quot;'>
+        <calculation class='tableau' formula='&quot;matplotlib&quot;' />
+        <members>
+          <member value='&quot;data analyst&quot;' />
+          <member value='&quot;data scientist&quot;' />
+          <member value='&quot;excel&quot;' />
+          <member value='&quot;python&quot;' />
+          <member value='&quot;pandas&quot;' />
+          <member value='&quot;matplotlib&quot;' />
+          <member value='&quot;sql&quot;' />
+          <member value='&quot;postgresql&quot;' />
+          <member value='&quot;bootstrap&quot;' />
+          <member value='&quot;nosql&quot;' />
+          <member value='&quot;mongodb&quot;' />
+          <member value='&quot;mongo&quot;' />
+          <member value='&quot;javascript&quot;' />
+          <member value='&quot;tableau&quot;' />
+          <member value='&quot;machine learning&quot;' />
+          <member value='&quot;ml&quot;' />
+          <member value='&quot;scikit learn&quot;' />
+          <member value='&quot;scikit&quot;' />
+          <member value='&quot;keras&quot;' />
+          <member value='&quot;tensorflow&quot;' />
+          <member value='&quot;pyspark&quot;' />
+          <member value='&quot;natural language processing&quot;' />
+          <member value='&quot;nlp&quot;' />
+          <member value='&quot;big data&quot;' />
+          <member value='&quot;etl&quot;' />
+          <member value='&quot;extract transform load&quot;' />
+          <member value='&quot;amazon web services&quot;' />
+          <member value='&quot;aws&quot;' />
+          <member value='&quot;rds&quot;' />
+        </members>
+      </column>
+    </datasource>
+    <datasource caption='ProcessedData' inline='true' name='federated.0tz5g591yjpztz1ds0mje0necqdj' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='localhost' name='mongodb.1i0vpa015n0scv1f0q9jt0u6sfp0'>
+            <connection class='mongodb' dbname='dice_db' one-time-sql='' port='3307' server='localhost' source-charset='' username='' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='mongodb.1i0vpa015n0scv1f0q9jt0u6sfp0' name='jobs' table='[jobs]' type='table'>
+          <columns>
+            <column datatype='date' date-parse-format='yyyy-MM-dd|#|#|yy &apos;minutes&apos; &apos;ago&apos;|#|#|MM &apos;hours&apos; &apos;ago&apos;' name='job_date' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='mongodb.1i0vpa015n0scv1f0q9jt0u6sfp0' name='jobs' table='[jobs]' type='table'>
+          <columns>
+            <column datatype='date' date-parse-format='yyyy-MM-dd|#|#|yy &apos;minutes&apos; &apos;ago&apos;|#|#|MM &apos;hours&apos; &apos;ago&apos;' name='job_date' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>_id</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[_id]</local-name>
+            <parent-name>[jobs]</parent-name>
+            <remote-alias>_id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>21845</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[jobs_79DEC8595C924AA5918726362FF719E4]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>job_company</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[job_company]</local-name>
+            <parent-name>[jobs]</parent-name>
+            <remote-alias>job_company</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>21845</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[jobs_79DEC8595C924AA5918726362FF719E4]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>job_date</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[job_date]</local-name>
+            <parent-name>[jobs]</parent-name>
+            <remote-alias>job_date</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[jobs_79DEC8595C924AA5918726362FF719E4]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>job_description</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[job_description]</local-name>
+            <parent-name>[jobs]</parent-name>
+            <remote-alias>job_description</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>21845</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[jobs_79DEC8595C924AA5918726362FF719E4]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>job_location</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[job_location]</local-name>
+            <parent-name>[jobs]</parent-name>
+            <remote-alias>job_location</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>21845</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[jobs_79DEC8595C924AA5918726362FF719E4]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>job_salary</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[job_salary]</local-name>
+            <parent-name>[jobs]</parent-name>
+            <remote-alias>job_salary</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>21845</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[jobs_79DEC8595C924AA5918726362FF719E4]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>job_title</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[job_title]</local-name>
+            <parent-name>[jobs]</parent-name>
+            <remote-alias>job_title</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>21845</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[jobs_79DEC8595C924AA5918726362FF719E4]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>job_type</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[job_type]</local-name>
+            <parent-name>[jobs]</parent-name>
+            <remote-alias>job_type</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>21845</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[jobs_79DEC8595C924AA5918726362FF719E4]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Valid' datatype='boolean' name='[Calculation_1641280597698502656]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='if [Sum_of_Counts] &gt; 3 then true&#13;&#10;else false&#13;&#10;end' />
+      </column>
+      <column caption='LatestDate' datatype='boolean' name='[Calculation_217017239122935812]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='[job_date] = {FIXED  [job_company],[job_title],[job_location] : MAX([job_date])}' />
+      </column>
+      <column caption='Salary [$/yr]' datatype='real' name='[Calculation_48132230809718785]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [UM] = &quot;$/hour&quot; THEN&#13;&#10;    IF IFNULL([salary_max],0)=0 THEN&#13;&#10;        float([salary_min])*8*261&#13;&#10;    ELSE&#13;&#10;        (float([salary_max])+float([salary_min]))/2*8*261&#13;&#10;    END&#13;&#10;ELSEIF [UM] = &quot;$/year&quot; THEN&#13;&#10;    IF IFNULL([salary_max],0)= 0 THEN&#13;&#10;        float([salary_min])&#13;&#10;    ELSE&#13;&#10;        (float([salary_max])+float([salary_min]))/2&#13;&#10;    END&#13;&#10;ELSE&#13;&#10;    NULL&#13;&#10;END' />
+      </column>
+      <column caption='KeywordsMatch[%]' datatype='real' name='[Calculation_48132230824120322]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='(if [amazon web services]&gt;0 then 1 else 0 end +&#13;&#10;if [aws]&gt;0 then 1 else 0 end +&#13;&#10;if [big data]&gt;0 then 1 else 0 end +&#13;&#10;if [bootstrap]&gt;0 then 1 else 0 end +&#13;&#10;if [data analyst]&gt;0 then 1 else 0 end +&#13;&#10;if [data scientist]&gt;0 then 1 else 0 end +&#13;&#10;if [etl]&gt;0 then 1 else 0 end +&#13;&#10;if [excel]&gt;0 then 1 else 0 end +&#13;&#10;if [extract transform load]&gt;0 then 1 else 0 end +&#13;&#10;if [javascript]&gt;0 then 1 else 0 end +&#13;&#10;if [keras]&gt;0 then 1 else 0 end +&#13;&#10;if [machine learning]&gt;0 then 1 else 0 end +&#13;&#10;if [matplotlib]&gt;0 then 1 else 0 end +&#13;&#10;if [ml]&gt;0 then 1 else 0 end +&#13;&#10;if [mongo]&gt;0 then 1 else 0 end +&#13;&#10;if [mongodb]&gt;0 then 1 else 0 end +&#13;&#10;if [natural language processing]&gt;0 then 1 else 0 end +&#13;&#10;if [nlp]&gt;0 then 1 else 0 end +&#13;&#10;if [nosql]&gt;0 then 1 else 0 end +&#13;&#10;if [pandas]&gt;0 then 1 else 0 end +&#13;&#10;if [postgresql]&gt;0 then 1 else 0 end +&#13;&#10;if [pyspark]&gt;0 then 1 else 0 end +&#13;&#10;if [python]&gt;0 then 1 else 0 end +&#13;&#10;if [rds]&gt;0 then 1 else 0 end +&#13;&#10;if [scikit]&gt;0 then 1 else 0 end +&#13;&#10;if [scikit learn]&gt;0 then 1 else 0 end +&#13;&#10;if [sql]&gt;0 then 1 else 0 end +&#13;&#10;if [tableau]&gt;0 then 1 else 0 end +&#13;&#10;if [tensorflow]&gt;0 then 1 else 0 end)/29' />
+      </column>
+      <column caption='Reset Label' datatype='string' name='[Calculation_602919410216550400]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='&quot;Reset filters&quot;' />
+      </column>
+      <_.fcp.ObjectModelTableType.true...column caption='jobs' datatype='table' name='[__tableau_internal_object_id__].[jobs_79DEC8595C924AA5918726362FF719E4]' role='measure' type='quantitative' />
+      <column caption='_Id' datatype='string' name='[_id]' role='dimension' type='nominal' />
+      <column caption='Amazon Web Services' datatype='integer' name='[amazon web services]' role='measure' type='quantitative' />
+      <column caption='Aws' datatype='integer' name='[aws]' role='measure' type='quantitative' />
+      <column caption='Big Data' datatype='integer' name='[big data]' role='measure' type='quantitative' />
+      <column caption='Bootstrap' datatype='integer' name='[bootstrap]' role='measure' type='quantitative' />
+      <column caption='Data Analyst' datatype='integer' name='[data analyst]' role='measure' type='quantitative' />
+      <column caption='Data Scientist' datatype='integer' name='[data scientist]' role='measure' type='quantitative' />
+      <column caption='Etl' datatype='integer' name='[etl]' role='measure' type='quantitative' />
+      <column caption='Excel' datatype='integer' name='[excel]' role='measure' type='quantitative' />
+      <column caption='Extract Transform Load' datatype='integer' name='[extract transform load]' role='measure' type='quantitative' />
+      <column caption='Javascript' datatype='integer' name='[javascript]' role='measure' type='quantitative' />
+      <column caption='Job Company' datatype='string' name='[job_company]' role='dimension' type='nominal' />
+      <column aggregation='Count' caption='Job Date' datatype='date' datatype-customized='true' name='[job_date]' role='dimension' type='ordinal' />
+      <column caption='Job Description' datatype='string' name='[job_description]' role='dimension' type='nominal' />
+      <column caption='Job Location' datatype='string' name='[job_location]' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal' />
+      <column caption='Job Salary' datatype='string' name='[job_salary]' role='dimension' type='nominal' />
+      <column caption='Job Title' datatype='string' name='[job_title]' role='dimension' type='nominal' />
+      <column caption='Job Type' datatype='string' name='[job_type]' role='dimension' type='nominal' />
+      <column caption='Keras' datatype='integer' name='[keras]' role='measure' type='quantitative' />
+      <column aggregation='Avg' datatype='real' name='[latitudes]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+      <column aggregation='Avg' datatype='real' name='[longitudes]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+      <column caption='Machine Learning' datatype='integer' name='[machine learning]' role='measure' type='quantitative' />
+      <column caption='Matplotlib' datatype='integer' name='[matplotlib]' role='measure' type='quantitative' />
+      <column caption='Ml' datatype='integer' name='[ml]' role='measure' type='quantitative' />
+      <column caption='Mongo' datatype='integer' name='[mongo]' role='measure' type='quantitative' />
+      <column caption='Mongodb' datatype='integer' name='[mongodb]' role='measure' type='quantitative' />
+      <column caption='Natural Language Processing' datatype='integer' name='[natural language processing]' role='measure' type='quantitative' />
+      <column caption='Nlp' datatype='integer' name='[nlp]' role='measure' type='quantitative' />
+      <column caption='Nosql' datatype='integer' name='[nosql]' role='measure' type='quantitative' />
+      <column caption='Pandas' datatype='integer' name='[pandas]' role='measure' type='quantitative' />
+      <column caption='Postgresql' datatype='integer' name='[postgresql]' role='measure' type='quantitative' />
+      <column caption='Pyspark' datatype='integer' name='[pyspark]' role='measure' type='quantitative' />
+      <column caption='Python' datatype='integer' name='[python]' role='measure' type='quantitative' />
+      <column caption='Rds' datatype='integer' name='[rds]' role='measure' type='quantitative' />
+      <column caption='Scikit Learn' datatype='integer' name='[scikit learn]' role='measure' type='quantitative' />
+      <column caption='Scikit' datatype='integer' name='[scikit]' role='measure' type='quantitative' />
+      <column caption='Sql' datatype='integer' name='[sql]' role='measure' type='quantitative' />
+      <column caption='Tableau' datatype='integer' name='[tableau]' role='measure' type='quantitative' />
+      <column caption='Tensorflow' datatype='integer' name='[tensorflow]' role='measure' type='quantitative' />
+      <group caption='Action (Job Company,Job Location,Job Title)' hidden='true' name='[Action (Job Company,Job Location,Job Title)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[job_company]' />
+          <groupfilter function='level-members' level='[job_location]' />
+          <groupfilter function='level-members' level='[job_title]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Job Location (group),Job Location)' hidden='true' name='[Action (Job Location (group),Job Location)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Job Location (group)]' />
+          <groupfilter function='level-members' level='[job_location]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Job Location)' hidden='true' name='[Action (Job Location)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[job_location]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Reset Label)' hidden='true' name='[Action (Reset Label)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_602919410216550400]' />
+        </groupfilter>
+      </group>
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <field-sort-info field-sort-order-type='custom-order'>
+        <field-sort-custom-order field='F1' />
+        <field-sort-custom-order field='job_title' />
+        <field-sort-custom-order field='job_company' />
+        <field-sort-custom-order field='Calculation_602919410216550400' />
+        <field-sort-custom-order field='job_salary' />
+        <field-sort-custom-order field='job_salary - Split 1' />
+        <field-sort-custom-order field='job_location' />
+        <field-sort-custom-order field='job_date' />
+        <field-sort-custom-order field='job_description' />
+        <field-sort-custom-order field='data analyst' />
+        <field-sort-custom-order field='data scientist' />
+        <field-sort-custom-order field='excel' />
+        <field-sort-custom-order field='python' />
+        <field-sort-custom-order field='pandas' />
+        <field-sort-custom-order field='matplotlib' />
+        <field-sort-custom-order field='sql' />
+        <field-sort-custom-order field='postgresql' />
+        <field-sort-custom-order field='bootstrap' />
+        <field-sort-custom-order field='nosql' />
+        <field-sort-custom-order field='mongodb' />
+        <field-sort-custom-order field='mongo' />
+        <field-sort-custom-order field='javascript' />
+        <field-sort-custom-order field='tableau' />
+        <field-sort-custom-order field='machine learning' />
+        <field-sort-custom-order field='ml' />
+        <field-sort-custom-order field='scikit learn' />
+        <field-sort-custom-order field='scikit' />
+        <field-sort-custom-order field='keras' />
+        <field-sort-custom-order field='tensorflow' />
+        <field-sort-custom-order field='pyspark' />
+        <field-sort-custom-order field='Calculation_48132230824120322' />
+        <field-sort-custom-order field='natural language processing' />
+        <field-sort-custom-order field='nlp' />
+        <field-sort-custom-order field='big data' />
+        <field-sort-custom-order field='etl' />
+        <field-sort-custom-order field='extract transform load' />
+        <field-sort-custom-order field='amazon web services' />
+        <field-sort-custom-order field='aws' />
+        <field-sort-custom-order field='rds' />
+        <field-sort-custom-order field='Sum_of_Counts' />
+        <field-sort-custom-order field='Calculation_1641280597698502656' />
+      </field-sort-info>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='jobs' id='jobs_79DEC8595C924AA5918726362FF719E4'>
+            <properties context=''>
+              <relation connection='mongodb.1i0vpa015n0scv1f0q9jt0u6sfp0' name='jobs' table='[jobs]' type='table'>
+                <columns>
+                  <column datatype='date' date-parse-format='yyyy-MM-dd|#|#|yy &apos;minutes&apos; &apos;ago&apos;|#|#|MM &apos;hours&apos; &apos;ago&apos;' name='job_date' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Tableau' />
+  </mapsources>
+  <actions>
+    <action caption='Filter 1 (generated)' name='[Action1]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='HeatMap' />
+      <command command='tsc:tsl-filter'>
+        <param name='exclude' value='HeatMap,JobDescr' />
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+    <action caption='SelectDescription' name='[Action2]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='Pay' />
+      <command command='tsc:tsl-filter'>
+        <param name='exclude' value='HeatMap,Pay' />
+        <param name='on-empty' value='none' />
+        <param name='single-select' value='' />
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+  </actions>
+  <worksheets>
+    <worksheet name='HeatMap'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run><![CDATA[<Sheet Name> (click and drag area of interest)]]></run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='ProcessedData' name='federated.0tz5g591yjpztz1ds0mje0necqdj' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.0tz5g591yjpztz1ds0mje0necqdj'>
+            <column-instance column='[latitudes]' derivation='Avg' name='[avg:latitudes:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[longitudes]' derivation='Avg' name='[avg:longitudes:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[job_company]' derivation='Count' name='[cnt:job_company:qk]' pivot='key' type='quantitative' />
+            <column caption='Job Company' datatype='string' name='[job_company]' role='dimension' type='nominal' />
+            <column aggregation='Count' caption='Job Date' datatype='date' datatype-customized='true' name='[job_date]' role='dimension' type='ordinal' />
+            <column caption='Job Location' datatype='string' name='[job_location]' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal' />
+            <column aggregation='Avg' datatype='real' name='[latitudes]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' datatype='real' name='[longitudes]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column-instance column='[job_company]' derivation='None' name='[none:job_company:nk]' pivot='key' type='nominal' />
+            <column-instance column='[job_date]' derivation='None' name='[none:job_date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[job_location]' derivation='None' name='[none:job_location:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]' filter-group='5'>
+            <groupfilter function='level-members' level='[none:job_company:nk]' user:ui-enumeration='all' user:ui-exclude='true' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='relative-date' column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_date:qk]' filter-group='3' first-period='-6' include-future='true' include-null='false' last-period='0' period-type-v2='day' />
+          <filter class='categorical' column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]' filter-group='4'>
+            <groupfilter function='level-members' level='[none:job_location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_date:qk]</column>
+            <column>[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]</column>
+            <column>[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]</column>
+          </slices>
+          <aggregation value='false' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0tz5g591yjpztz1ds0mje0necqdj].[avg:longitudes:qk]' field-type='quantitative' max='-2271936.1122787166' min='-18626191.363663983' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0tz5g591yjpztz1ds0mje0necqdj].[avg:latitudes:qk]' field-type='quantitative' max='6340918.9445519755' min='1795466.8714321344' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.0tz5g591yjpztz1ds0mje0necqdj].[cnt:job_company:qk]' palette='red_green_gold_diverging_10_0' type='interpolated' />
+          </style-rule>
+          <style-rule element='map-layer'>
+            <format attr='enabled' id='b01002_001e' value='false' />
+            <format attr='enabled' id='b01002_002e' value='false' />
+            <format attr='enabled' id='b01002_003e' value='false' />
+            <format attr='enabled' id='dp02_0001e' value='false' />
+            <format attr='enabled' id='dp02_0015e' value='false' />
+            <format attr='enabled' id='dp03_0027e_plus_dp03_0029e' value='false' />
+            <format attr='enabled' id='dp03_0028e' value='false' />
+            <format attr='enabled' id='dp03_0030e_plus_dp03_0031e' value='false' />
+            <format attr='enabled' id='dp03_0062e' value='false' />
+            <format attr='enabled' id='dp03_0088e' value='false' />
+            <format attr='enabled' id='dp04_0001e' value='false' />
+            <format attr='enabled' id='dp04_0046e' value='false' />
+            <format attr='enabled' id='dp04_0047e' value='false' />
+            <format attr='enabled' id='dp04_0089e' value='false' />
+            <format attr='enabled' id='dp05_0001e' value='false' />
+            <format attr='enabled' id='dp05_0002e_div_dp05_0003e' value='false' />
+            <format attr='enabled' id='dp05_0032e' value='false' />
+            <format attr='enabled' id='dp05_0033e' value='false' />
+            <format attr='enabled' id='dp05_0034e' value='false' />
+            <format attr='enabled' id='dp05_0039e' value='false' />
+            <format attr='enabled' id='dp05_0047e' value='false' />
+            <format attr='enabled' id='dp05_0053e' value='false' />
+            <format attr='enabled' id='dp05_0066e' value='false' />
+            <format attr='enabled' id='dp05_0077e' value='false' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0' />
+            <format attr='map-style' value='streets' />
+          </style-rule>
+          <style-rule element='map-data-layer'>
+            <format attr='palette' value='tableau-map-blue-green-light' />
+            <format attr='geo-area-type' value='State' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Heatmap' />
+            <encodings>
+              <lod column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]' />
+              <lod column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[cnt:job_company:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <encoding attr='density-color' palette='tableau-map-temperatur' type='interpolated' />
+                <format attr='density-intensity' value='0.029787063598632813' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0tz5g591yjpztz1ds0mje0necqdj].[avg:latitudes:qk]</rows>
+        <cols>[federated.0tz5g591yjpztz1ds0mje0necqdj].[avg:longitudes:qk]</cols>
+      </table>
+      <simple-id uuid='{A8914030-1F41-40A5-846B-B8F5BDC50D0B}' />
+    </worksheet>
+    <worksheet name='JobDescr'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='ProcessedData' name='federated.0tz5g591yjpztz1ds0mje0necqdj' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0tz5g591yjpztz1ds0mje0necqdj'>
+            <column caption='LatestDate' datatype='boolean' name='[Calculation_217017239122935812]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='[job_date] = {FIXED  [job_company],[job_title],[job_location] : MAX([job_date])}' />
+            </column>
+            <column caption='Job Company' datatype='string' name='[job_company]' role='dimension' type='nominal' />
+            <column aggregation='Count' caption='Job Date' datatype='date' datatype-customized='true' name='[job_date]' role='dimension' type='ordinal' />
+            <column caption='Job Description' datatype='string' name='[job_description]' role='dimension' type='nominal' />
+            <column caption='Job Location' datatype='string' name='[job_location]' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal' />
+            <column caption='Job Title' datatype='string' name='[job_title]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_217017239122935812]' derivation='None' name='[none:Calculation_217017239122935812:nk]' pivot='key' type='nominal' />
+            <column-instance column='[job_company]' derivation='None' name='[none:job_company:nk]' pivot='key' type='nominal' />
+            <column-instance column='[job_description]' derivation='None' name='[none:job_description:nk]' pivot='key' type='nominal' />
+            <column-instance column='[job_title]' derivation='None' name='[none:job_title:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[Action (Job Company,Job Location,Job Title)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='empty-level' member='[job_company]' />
+              <groupfilter function='empty-level' member='[job_location]' />
+              <groupfilter function='empty-level' member='[job_title]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:Calculation_217017239122935812:nk]'>
+            <groupfilter function='member' level='[none:Calculation_217017239122935812:nk]' member='true' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_title:nk]'>
+            <groupfilter function='level-members' level='[none:job_title:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_title:nk]</column>
+            <column>[federated.0tz5g591yjpztz1ds0mje0necqdj].[Action (Job Company,Job Location,Job Title)]</column>
+            <column>[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:Calculation_217017239122935812:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='1372' />
+            <format attr='height' value='765' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_title:nk]' />
+              <text column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]' />
+              <text column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_description:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_title:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_description:nk]>]]></run>
+                <run>Æ&#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{CB2E5092-468B-46A4-86FE-CA08EB22B61D}' />
+    </worksheet>
+    <worksheet name='Pay'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>&lt;Sheet Name&gt; &amp; Keywords Matched</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='ProcessedData' name='federated.0tz5g591yjpztz1ds0mje0necqdj' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0tz5g591yjpztz1ds0mje0necqdj'>
+            <column caption='Salary [$/yr]' datatype='real' name='[Calculation_48132230809718785]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [UM] = &quot;$/hour&quot; THEN&#13;&#10;    IF IFNULL([salary_max],0)=0 THEN&#13;&#10;        float([salary_min])*8*261&#13;&#10;    ELSE&#13;&#10;        (float([salary_max])+float([salary_min]))/2*8*261&#13;&#10;    END&#13;&#10;ELSEIF [UM] = &quot;$/year&quot; THEN&#13;&#10;    IF IFNULL([salary_max],0)= 0 THEN&#13;&#10;        float([salary_min])&#13;&#10;    ELSE&#13;&#10;        (float([salary_max])+float([salary_min]))/2&#13;&#10;    END&#13;&#10;ELSE&#13;&#10;    NULL&#13;&#10;END' />
+            </column>
+            <column caption='KeywordsMatch[%]' datatype='real' name='[Calculation_48132230824120322]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='(if [amazon web services]&gt;0 then 1 else 0 end +&#13;&#10;if [aws]&gt;0 then 1 else 0 end +&#13;&#10;if [big data]&gt;0 then 1 else 0 end +&#13;&#10;if [bootstrap]&gt;0 then 1 else 0 end +&#13;&#10;if [data analyst]&gt;0 then 1 else 0 end +&#13;&#10;if [data scientist]&gt;0 then 1 else 0 end +&#13;&#10;if [etl]&gt;0 then 1 else 0 end +&#13;&#10;if [excel]&gt;0 then 1 else 0 end +&#13;&#10;if [extract transform load]&gt;0 then 1 else 0 end +&#13;&#10;if [javascript]&gt;0 then 1 else 0 end +&#13;&#10;if [keras]&gt;0 then 1 else 0 end +&#13;&#10;if [machine learning]&gt;0 then 1 else 0 end +&#13;&#10;if [matplotlib]&gt;0 then 1 else 0 end +&#13;&#10;if [ml]&gt;0 then 1 else 0 end +&#13;&#10;if [mongo]&gt;0 then 1 else 0 end +&#13;&#10;if [mongodb]&gt;0 then 1 else 0 end +&#13;&#10;if [natural language processing]&gt;0 then 1 else 0 end +&#13;&#10;if [nlp]&gt;0 then 1 else 0 end +&#13;&#10;if [nosql]&gt;0 then 1 else 0 end +&#13;&#10;if [pandas]&gt;0 then 1 else 0 end +&#13;&#10;if [postgresql]&gt;0 then 1 else 0 end +&#13;&#10;if [pyspark]&gt;0 then 1 else 0 end +&#13;&#10;if [python]&gt;0 then 1 else 0 end +&#13;&#10;if [rds]&gt;0 then 1 else 0 end +&#13;&#10;if [scikit]&gt;0 then 1 else 0 end +&#13;&#10;if [scikit learn]&gt;0 then 1 else 0 end +&#13;&#10;if [sql]&gt;0 then 1 else 0 end +&#13;&#10;if [tableau]&gt;0 then 1 else 0 end +&#13;&#10;if [tensorflow]&gt;0 then 1 else 0 end)/29' />
+            </column>
+            <column datatype='string' name='[UM]' role='dimension' type='nominal' />
+            <column caption='Amazon Web Services' datatype='integer' name='[amazon web services]' role='measure' type='quantitative' />
+            <column-instance column='[job_location]' derivation='Attribute' name='[attr:job_location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[job_salary]' derivation='Attribute' name='[attr:job_salary:nk]' pivot='key' type='nominal' />
+            <column-instance column='[job_title]' derivation='Attribute' name='[attr:job_title:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_48132230809718785]' derivation='Avg' name='[avg:Calculation_48132230809718785:qk]' pivot='key' type='quantitative' />
+            <column caption='Aws' datatype='integer' name='[aws]' role='measure' type='quantitative' />
+            <column caption='Big Data' datatype='integer' name='[big data]' role='measure' type='quantitative' />
+            <column caption='Bootstrap' datatype='integer' name='[bootstrap]' role='measure' type='quantitative' />
+            <column-instance column='[job_description]' derivation='CountD' name='[ctd:job_description:qk]' pivot='key' type='quantitative' />
+            <column caption='Data Analyst' datatype='integer' name='[data analyst]' role='measure' type='quantitative' />
+            <column caption='Data Scientist' datatype='integer' name='[data scientist]' role='measure' type='quantitative' />
+            <column caption='Etl' datatype='integer' name='[etl]' role='measure' type='quantitative' />
+            <column caption='Excel' datatype='integer' name='[excel]' role='measure' type='quantitative' />
+            <column caption='Extract Transform Load' datatype='integer' name='[extract transform load]' role='measure' type='quantitative' />
+            <column caption='Javascript' datatype='integer' name='[javascript]' role='measure' type='quantitative' />
+            <column caption='Job Company' datatype='string' name='[job_company]' role='dimension' type='nominal' />
+            <column aggregation='Count' caption='Job Date' datatype='date' datatype-customized='true' name='[job_date]' role='dimension' type='ordinal' />
+            <column caption='Job Description' datatype='string' name='[job_description]' role='dimension' type='nominal' />
+            <column caption='Job Location' datatype='string' name='[job_location]' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal' />
+            <column caption='Job Salary' datatype='string' name='[job_salary]' role='dimension' type='nominal' />
+            <column caption='Job Title' datatype='string' name='[job_title]' role='dimension' type='nominal' />
+            <column caption='Keras' datatype='integer' name='[keras]' role='measure' type='quantitative' />
+            <column caption='Machine Learning' datatype='integer' name='[machine learning]' role='measure' type='quantitative' />
+            <column caption='Matplotlib' datatype='integer' name='[matplotlib]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_48132230824120322]' derivation='Max' name='[max:Calculation_48132230824120322:qk]' pivot='key' type='quantitative' />
+            <column caption='Ml' datatype='integer' name='[ml]' role='measure' type='quantitative' />
+            <column caption='Mongo' datatype='integer' name='[mongo]' role='measure' type='quantitative' />
+            <column caption='Mongodb' datatype='integer' name='[mongodb]' role='measure' type='quantitative' />
+            <column caption='Natural Language Processing' datatype='integer' name='[natural language processing]' role='measure' type='quantitative' />
+            <column caption='Nlp' datatype='integer' name='[nlp]' role='measure' type='quantitative' />
+            <column-instance column='[job_company]' derivation='None' name='[none:job_company:nk]' pivot='key' type='nominal' />
+            <column-instance column='[job_date]' derivation='None' name='[none:job_date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[job_location]' derivation='None' name='[none:job_location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[job_title]' derivation='None' name='[none:job_title:nk]' pivot='key' type='nominal' />
+            <column caption='Nosql' datatype='integer' name='[nosql]' role='measure' type='quantitative' />
+            <column caption='Pandas' datatype='integer' name='[pandas]' role='measure' type='quantitative' />
+            <column caption='Postgresql' datatype='integer' name='[postgresql]' role='measure' type='quantitative' />
+            <column caption='Pyspark' datatype='integer' name='[pyspark]' role='measure' type='quantitative' />
+            <column caption='Python' datatype='integer' name='[python]' role='measure' type='quantitative' />
+            <column caption='Rds' datatype='integer' name='[rds]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[salary_max]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[salary_min]' role='measure' type='quantitative' />
+            <column caption='Scikit Learn' datatype='integer' name='[scikit learn]' role='measure' type='quantitative' />
+            <column caption='Scikit' datatype='integer' name='[scikit]' role='measure' type='quantitative' />
+            <column caption='Sql' datatype='integer' name='[sql]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_48132230824120322]' derivation='Sum' name='[sum:Calculation_48132230824120322:qk]' pivot='key' type='quantitative' />
+            <column caption='Tableau' datatype='integer' name='[tableau]' role='measure' type='quantitative' />
+            <column caption='Tensorflow' datatype='integer' name='[tensorflow]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[Action (Job Location)]'>
+            <groupfilter function='level-members' level='[job_location]' user:ui-action-filter='[Action1]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]' filter-group='5'>
+            <groupfilter function='level-members' level='[none:job_company:nk]' user:ui-enumeration='all' user:ui-exclude='true' user:ui-marker='enumerate' />
+          </filter>
+          <computed-sort column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]' direction='DESC' using='[federated.0tz5g591yjpztz1ds0mje0necqdj].[sum:Calculation_48132230824120322:qk]' />
+          <filter class='relative-date' column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_date:qk]' filter-group='3' first-period='-6' include-future='true' include-null='false' last-period='0' period-type-v2='day' />
+          <filter class='categorical' column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]' filter-group='4'>
+            <groupfilter function='level-members' level='[none:job_location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_date:qk]</column>
+            <column>[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]</column>
+            <column>[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]</column>
+            <column>[federated.0tz5g591yjpztz1ds0mje0necqdj].[Action (Job Location)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' domain-expand='false' field='[federated.0tz5g591yjpztz1ds0mje0necqdj].[avg:Calculation_48132230809718785:qk]' field-type='quantitative' scope='cols' type='space' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_title:nk]' value='216' />
+            <format attr='width' field='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]' value='364' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[ctd:job_description:qk]' />
+              <tooltip column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_title:nk]' />
+              <tooltip column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_location:nk]' />
+              <tooltip column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_salary:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'>Job Company:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Job Location:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Job Title:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_title:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Job Salary:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_salary:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Avg. Salary:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[avg:Calculation_48132230809718785:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.0tz5g591yjpztz1ds0mje0necqdj].[avg:Calculation_48132230809718785:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[ctd:job_description:qk]' />
+              <tooltip column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_title:nk]' />
+              <tooltip column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_location:nk]' />
+              <tooltip column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_salary:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'>Job Company:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Job Location:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Job Title:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_title:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Job Salary:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_salary:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Avg. Salary:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[avg:Calculation_48132230809718785:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.0tz5g591yjpztz1ds0mje0necqdj].[max:Calculation_48132230824120322:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[ctd:job_description:qk]' />
+              <tooltip column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_title:nk]' />
+              <tooltip column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_location:nk]' />
+              <tooltip column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_salary:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'>Job Company:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Job Location:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Job Title:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_title:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Job Salary:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[attr:job_salary:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Avg. Salary:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0tz5g591yjpztz1ds0mje0necqdj].[avg:Calculation_48132230809718785:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+          </pane>
+        </panes>
+        <rows>([federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk] / ([federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_title:nk] / [federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]))</rows>
+        <cols>([federated.0tz5g591yjpztz1ds0mje0necqdj].[avg:Calculation_48132230809718785:qk] + [federated.0tz5g591yjpztz1ds0mje0necqdj].[max:Calculation_48132230824120322:qk])</cols>
+      </table>
+      <simple-id uuid='{AEFA4EB2-2E4F-492B-942D-5D8D3806DDC8}' />
+    </worksheet>
+    <worksheet name='Reset'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='ProcessedData' name='federated.0tz5g591yjpztz1ds0mje0necqdj' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0tz5g591yjpztz1ds0mje0necqdj'>
+            <column caption='Reset Label' datatype='string' name='[Calculation_602919410216550400]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='&quot;Reset filters&quot;' />
+            </column>
+            <column-instance column='[Calculation_602919410216550400]' derivation='None' name='[none:Calculation_602919410216550400:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='table'>
+            <format attr='background-color' value='#b4b4b4' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:Calculation_602919410216550400:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{851F4CA0-630B-465E-B18A-44A05CCD3FDA}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Dashboard 1'>
+      <style />
+      <size maxheight='900' maxwidth='1600' minheight='900' minwidth='1600' preset-index='8' sizing-mode='fixed' />
+      <datasources>
+        <datasource caption='ProcessedData' name='federated.0tz5g591yjpztz1ds0mje0necqdj' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0tz5g591yjpztz1ds0mje0necqdj'>
+        <column caption='Job Company' datatype='string' name='[job_company]' role='dimension' type='nominal' />
+        <column aggregation='Count' caption='Job Date' datatype='date' datatype-customized='true' name='[job_date]' role='dimension' type='ordinal' />
+        <column caption='Job Location' datatype='string' name='[job_location]' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal' />
+        <column-instance column='[job_company]' derivation='None' name='[none:job_company:nk]' pivot='key' type='nominal' />
+        <column-instance column='[job_date]' derivation='None' name='[none:job_date:qk]' pivot='key' type='quantitative' />
+        <column-instance column='[job_location]' derivation='None' name='[none:job_location:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <zones>
+        <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='4' w='100000' x='0' y='0'>
+          <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='48915' id='13' param='horz' w='99000' x='500' y='889'>
+            <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='48915' id='7' param='horz' w='87812' x='500' y='889'>
+              <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='48915' id='5' w='87812' x='500' y='889'>
+                <zone h='48915' id='3' name='HeatMap' w='87812' x='500' y='889'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+            </zone>
+            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' fixed-size='179' h='48915' id='38' is-fixed='true' w='11188' x='88312' y='889'>
+              <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='48915' id='12' param='vert' w='11188' x='88312' y='889'>
+                <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='2889' id='14' mode='pattern' name='HeatMap' param='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]' values='relevant' w='11188' x='88312' y='889'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='2889' id='28' mode='dropdown' name='HeatMap' param='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]' values='database' w='11188' x='88312' y='3778'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='2889' id='27' name='HeatMap' param='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_date:qk]' values='database' w='11188' x='88312' y='6667'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+          <zone h='49307' id='30' name='JobDescr' w='29187' x='70313' y='49804'>
+            <layout-cache fixed-size-h='825' fixed-size-w='1389' type-h='fixed' type-w='fixed' />
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='49307' id='11' name='Pay' w='69813' x='500' y='49804'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1100' minheight='1100' sizing-mode='vscroll' />
+          <zones>
+            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='56' w='100000' x='0' y='0'>
+              <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='98222' id='55' param='vert' w='99000' x='500' y='889'>
+                <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='8111' id='14' mode='pattern' name='HeatMap' param='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]' values='relevant' w='11188' x='88312' y='889'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='8111' id='28' mode='dropdown' name='HeatMap' param='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]' values='database' w='11188' x='88312' y='9000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='8111' id='27' name='HeatMap' param='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_date:qk]' values='database' w='11188' x='88312' y='17111'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='48915' id='3' is-fixed='true' name='HeatMap' w='87812' x='500' y='889'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='49307' id='11' is-fixed='true' name='Pay' w='69813' x='500' y='49804'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='49307' id='30' is-fixed='true' name='JobDescr' w='29187' x='70313' y='49804'>
+                  <layout-cache fixed-size-h='825' fixed-size-w='1389' type-h='fixed' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{0A1C987B-2581-4488-AC55-5D769F6D2B15}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='HeatMap'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='pattern' param='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_company:nk]' type='filter' />
+            <card mode='checkdropdown' param='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_location:nk]' type='filter' />
+            <card param='[federated.0tz5g591yjpztz1ds0mje0necqdj].[none:job_date:qk]' show-domain='false' show-null-ctrls='false' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{3DA9D0A6-DD62-41C7-AC4C-A991EDB0C8F9}' />
+    </window>
+    <window class='worksheet' name='Pay'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{F8433073-47DE-4D94-8D26-8EB54BB1B326}' />
+    </window>
+    <window class='worksheet' name='JobDescr'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{96881A8C-8D47-4DA7-A6EE-2C934846FDF0}' />
+    </window>
+    <window class='worksheet' name='Reset'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='fit-width' />
+      </viewpoint>
+      <simple-id uuid='{E85CB4E3-ACE8-4881-B74B-9AC5A06C015A}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Dashboard 1'>
+      <viewpoints>
+        <viewpoint name='HeatMap'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='JobDescr' />
+        <viewpoint name='Pay' />
+      </viewpoints>
+      <active id='11' />
+      <simple-id uuid='{28311271-6A67-4A77-81A2-3E6915C0C1E2}' />
+    </window>
+  </windows>
+</workbook>

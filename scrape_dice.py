@@ -7,6 +7,23 @@ from datetime import date, timedelta
 from geopy.geocoders import Nominatim
 import re
 
+# count keywords in description
+from collections import Counter
+def find_words(key_words, string):
+    string = string.split()
+    separator = " "
+    words_found = {}
+    for word in key_words:
+        n_gram = len(word.split())
+        res = Counter(separator.join(string[idx : idx + n_gram]) for idx in range(len(string) - n_gram + 1))
+        print(word, res[word])
+        if res[word]>0:
+            words_found[word] = res[word]
+    # add KeyWordsMatch[%]
+    words_found["KeyWordsMatch[%]"] = len(words_found)/len(key_words)
+    return words_found
+
+
 # find coordinates for a given address
 def find_coordinates(address):     
     # Try with address as is
@@ -128,7 +145,7 @@ class db_connection:
         else:
             return False
             
-    def store_job(self, title, company, location, latitude, longitude, date, salary, job_type, description):
+    def store_job(self, title, company, location, latitude, longitude, date, salary, job_type, description, words_found_dict):
         self.jobs_collection.insert_one({ \
         "job_title": title, \
         "job_company": company, \
@@ -138,7 +155,8 @@ class db_connection:
         "location_longitude": longitude, \
         "job_date": date, \
         "job_type": job_type, \
-        "job_description": description \
+        "job_description": description, \
+        **words_found_dict \
         })
         
         print(f"""Inserted into database:
@@ -151,10 +169,16 @@ class db_connection:
             job_date: {date}
             job_type: {job_type}
             job_description: {description[:30]}
+            words_found: {words_found_dict}
             
             """)
 
-#Initiate database session and browser
+# Define keywords to scrape
+key_words = ["data analyst", "data scientist", "excel", "python", "pandas", "matplotlib", "sql", "postgresql", "bootstrap", "nosql", \
+    "mongodb", "mongo", "javascript", "tableau", "machine learning", "ml", "scikit learn", "scikit", "keras", "tensorflow", "pyspark", "natural language processing", \
+        "nlp", "big data", "etl", "extract transform load", "amazon web services", "aws", "rds"]
+
+# Initiate database session and browser
 session = db_connection()
 browser = scrape()
 
@@ -196,6 +220,8 @@ while page <= 350:
                 job_descr_dict["job_type"], \
                 job_descr_dict["job_description"], \
                 
+                #inserting dict of words found in description
+                find_words(key_words, job_descr_dict["job_description"])
             )
             job_inserted_counter+=1
             
