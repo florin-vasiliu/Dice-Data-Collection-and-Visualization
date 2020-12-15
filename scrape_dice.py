@@ -6,17 +6,29 @@ import time
 from datetime import date, timedelta
 from geopy.geocoders import Nominatim
 import re
+import string
 
 # count keywords in description
 from collections import Counter
-def find_words(key_words, string):
-    string = string.split()
+
+def find_words(key_words, text):
+    # Clean-up the string
+    '''Make text lowercase, remove text in square brackets, remove punctuation and remove words containing numbers.'''
+    text = text.lower()
+    text = re.sub('[%s]' % re.escape(string.punctuation), ' ', text)
+    text = re.sub('\w*\d\w*', ' ', text)
+
+    '''Get rid of some additional punctuation and non-sensical text that was missed the first time around.'''
+    text = re.sub('[‘’“”…]', ' ', text)
+    text = re.sub('\n', ' ', text)
+    
+    # Count the words of interest in the string
+    text = text.split()
     separator = " "
     words_found = {}
     for word in key_words:
         n_gram = len(word.split())
-        res = Counter(separator.join(string[idx : idx + n_gram]) for idx in range(len(string) - n_gram + 1))
-        print(word, res[word])
+        res = Counter(separator.join(text[idx : idx + n_gram]) for idx in range(len(text) - n_gram + 1))
         if res[word]>0:
             words_found[word] = res[word]
     # add KeyWordsMatch[%]
@@ -58,9 +70,11 @@ class scrape:
         # Headless False for displaying the browser
         self.browser = Browser('chrome', **executable_path, headless=False)
     
-    def visit_page(self, location="USA", page_size=100, employment_type = "FULLTIME"):
-        # filtering only fultime jobs
-        url = f"https://www.dice.com/jobs?location={location}&latitude=37.09024&longitude=-95.712891&countryCode=US&locationPrecision=Country&radius=30&radiusUnit=mi&page=1&pageSize={page_size}&filters.employmentType={employment_type}&language=en"
+    def visit_page(self, search_word, page_size=100, employment_type = "FULLTIME"):
+        # replacing spaces with %20
+        search_word = "%20".join(search_word.split())
+
+        url = f"https://www.dice.com/jobs?q={search_word}&countryCode=US&radius=30&radiusUnit=mi&page=1&pageSize={page_size}&language=en"
         self.browser.visit(url) 
         
     def scrape_job_cards_dice(self):
@@ -182,59 +196,65 @@ key_words = ["data analyst", "data scientist", "excel", "python", "pandas", "mat
 session = db_connection()
 browser = scrape()
 
-# Visit first page
+# Define sleeping parameters
 time_to_sleep_for_page_change = 10
 time_to_sleep_for_scraping_job_descr = 1
-browser.visit_page(page_size=1000)
-time.sleep(time_to_sleep_for_page_change)
 
-# Start looping
-page = 1
+for search_word in key_words:
+    try:
+        # Visit first page
+        browser.visit_page(search_word, page_size=1000)
+        time.sleep(time_to_sleep_for_page_change)
 
-job_inserted_counter = 0
-time_start = time.time()
-while page <= 350:
-    # Scrape and store in DB
-    for card_data in browser.scrape_job_cards_dice():
-        # if card data is in database then scrape job description and store data
-        if not session.check_job_presence( \
-            card_data["job_title"], \
-            card_data["job_company"], \
-            card_data["job_location"], \
-            card_data["job_date"], \
-                                        ):
-            # scrape job description and wait
-            job_descr_dict = browser.scrape_job_dice(card_data["job_descr_link"])
-            coordinates = find_coordinates(card_data["job_location"])
-            time.sleep(time_to_sleep_for_scraping_job_descr)
-            
-            # store data
-            session.store_job(
-                card_data["job_title"], \
-                card_data["job_company"], \
-                card_data["job_location"], \
-                coordinates["location_latitude"], \
-                coordinates["location_longitude"], \
-                card_data["job_date"], \
-                job_descr_dict["job_salary"], \
-                job_descr_dict["job_type"], \
-                job_descr_dict["job_description"], \
-                
-                #inserting dict of words found in description
-                find_words(key_words, job_descr_dict["job_description"])
-            )
-            job_inserted_counter+=1
-            
+        # Start looping
+        page = 1
+
+        job_inserted_counter = 0
+        time_start = time.time()
+        while page <= 350:
+            # Scrape and store in DB
+            for card_data in browser.scrape_job_cards_dice():
+                # if card data is in database then scrape job description and store data
+                if not session.check_job_presence( \
+                    card_data["job_title"], \
+                    card_data["job_company"], \
+                    card_data["job_location"], \
+                    card_data["job_date"], \
+                                                ):
+                    # scrape job description and wait
+                    job_descr_dict = browser.scrape_job_dice(card_data["job_descr_link"])
+                    coordinates = find_coordinates(card_data["job_location"])
+                    time.sleep(time_to_sleep_for_scraping_job_descr)
+                    
+                    # store data
+                    session.store_job(
+                        card_data["job_title"], \
+                        card_data["job_company"], \
+                        card_data["job_location"], \
+                        coordinates["location_latitude"], \
+                        coordinates["location_longitude"], \
+                        card_data["job_date"], \
+                        job_descr_dict["job_salary"], \
+                        job_descr_dict["job_type"], \
+                        job_descr_dict["job_description"], \
+                        
+                        #inserting dict of words found in description
+                        find_words(key_words, job_descr_dict["job_description"])
+                    )
+                    job_inserted_counter+=1
+                    
+                    time_elapsed = time.time() - time_start
+                    print(f"Page: {page}")
+                    print(f"New Jobs Scraped: {job_inserted_counter}")
+                    print(f"Time Elapsed[min]: {time_elapsed/60}")
             time_elapsed = time.time() - time_start
             print(f"Page: {page}")
             print(f"New Jobs Scraped: {job_inserted_counter}")
             print(f"Time Elapsed[min]: {time_elapsed/60}")
-    time_elapsed = time.time() - time_start
-    print(f"Page: {page}")
-    print(f"New Jobs Scraped: {job_inserted_counter}")
-    print(f"Time Elapsed[min]: {time_elapsed/60}")
-    
-    # Navigate to next page
-    browser.browser.click_link_by_partial_text('»')
-    time.sleep(time_to_sleep_for_page_change)
-    page+=1
+            
+            # Navigate to next page
+            browser.browser.click_link_by_partial_text('»')
+            time.sleep(time_to_sleep_for_page_change)
+            page+=1
+    except:
+        "end of pages or error occured"
