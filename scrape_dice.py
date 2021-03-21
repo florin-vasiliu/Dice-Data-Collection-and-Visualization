@@ -64,7 +64,7 @@ def convert_date(date_string):
         elif date_string.find("day ago")>-1:
             return date.today()-timedelta(days=1)
 
-class scrape:
+class Scrape:
     def __init__(self):
         executable_path = {'executable_path': 'chromedriver.exe'}
         # Headless False for displaying the browser
@@ -132,7 +132,7 @@ class scrape:
         return {"job_salary":job_salary, "job_type":job_type, "job_description":job_description}
 
 # Store in db
-class db_connection:
+class DB_connection:
     def __init__(self):
         #connect to database
         connection_string='mongodb://localhost:27017'
@@ -188,13 +188,15 @@ class db_connection:
             """)
 
 # Define keywords to scrape
-key_words = ["data analyst", "data scientist", "excel", "python", "pandas", "matplotlib", "sql", "postgresql", "bootstrap", "nosql", \
-    "mongodb", "mongo", "javascript", "tableau", "machine learning", "ml", "scikit learn", "scikit", "keras", "tensorflow", "pyspark", "natural language processing", \
-        "nlp", "big data", "etl", "extract transform load", "amazon web services", "aws", "rds"]
+key_words = ["data analyst", "data scientist", "excel", "python", "pandas", "matplotlib", \
+    "sql", "postgresql", "bootstrap", "nosql", \
+    "mongodb", "mongo", "javascript", "tableau", "machine learning", "ml", "scikit learn", \
+    "scikit", "keras", "tensorflow", "pyspark", "natural language processing", \
+    "nlp", "big data", "etl", "extract transform load", "amazon web services", "aws", "rds"]
 
 # Initiate database session and browser
-session = db_connection()
-browser = scrape()
+session = DB_connection()
+browser = Scrape()
 
 # Define sleeping parameters
 time_to_sleep_for_page_change = 10
@@ -214,7 +216,7 @@ for search_word in key_words:
         while page <= 350:
             # Scrape and store in DB
             for card_data in browser.scrape_job_cards_dice():
-                # if card data is in database then scrape job description and store data
+                # if card data is not in database then scrape job description and store data
                 if not session.check_job_presence( \
                     card_data["job_title"], \
                     card_data["job_company"], \
@@ -245,10 +247,12 @@ for search_word in key_words:
                     
                     time_elapsed = time.time() - time_start
                     print(f"Page: {page}")
+                    print(f"Search word: {search_word}")
                     print(f"New Jobs Scraped: {job_inserted_counter}")
                     print(f"Time Elapsed[min]: {time_elapsed/60}")
             time_elapsed = time.time() - time_start
             print(f"Page: {page}")
+            print(f"Search word: {search_word}")
             print(f"New Jobs Scraped: {job_inserted_counter}")
             print(f"Time Elapsed[min]: {time_elapsed/60}")
             
