@@ -11,6 +11,7 @@ import string
 # count keywords in description
 from collections import Counter
 
+# key words in a text
 def find_words(key_words, text):
     # Clean-up the string
     '''Make text lowercase, remove text in square brackets, remove punctuation and remove words containing numbers.'''
@@ -140,11 +141,11 @@ class DB_connection:
         #define database for storage
         db = client.dice_db
         #drop all stored data
-        #db.jobs.drop()
+        db.jobs.drop()
         db.jobs
         #define collection to store data
         self.jobs_collection = db.jobs
-        
+    
     def check_job_presence(self, job_title, job_company, job_location, job_date):
         # check if record is in database before scraping description
         field_to_check = self.jobs_collection.find_one({"$and":[
@@ -159,7 +160,7 @@ class DB_connection:
         else:
             return False
             
-    def store_job(self, title, company, location, latitude, longitude, date, salary, job_type, description, words_found_dict):
+    def store_job(self, title, company, location, latitude, longitude, date, salary, job_type, description_link, words_found_dict):
         self.jobs_collection.insert_one({ \
         "job_title": title, \
         "job_company": company, \
@@ -169,7 +170,7 @@ class DB_connection:
         "location_longitude": longitude, \
         "job_date": date, \
         "job_type": job_type, \
-        "job_description": description, \
+        "job_description_link": description_link, \
         **words_found_dict \
         })
         
@@ -182,7 +183,7 @@ class DB_connection:
             location_longitude: {longitude}
             job_date: {date}
             job_type: {job_type}
-            job_description: {description[:30]}
+            job_description_link: {description_link}
             words_found: {words_found_dict}
             
             """)
@@ -238,7 +239,8 @@ for search_word in key_words:
                         card_data["job_date"], \
                         job_descr_dict["job_salary"], \
                         job_descr_dict["job_type"], \
-                        job_descr_dict["job_description"], \
+                        #job_descr_dict["job_description"], \
+                        card_data["job_descr_link"], \
                         
                         #inserting dict of words found in description
                         find_words(key_words, job_descr_dict["job_description"])
