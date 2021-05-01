@@ -9,5 +9,5 @@ Therefore, this project was developed having this in mind, with the objective to
 1. Data Scraping:
   a. 
   
- <img src=https://github.com/florin-vasiliu/Houston-Crime-Analysis/blob/master/images/police-cars.jpg>
+ <img src=https://github.com/florin-vasiliu/dice_scraping/tree/master/images/JobCards.jpg>
 
