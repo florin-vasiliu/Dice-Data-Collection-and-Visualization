@@ -35,12 +35,12 @@ Therefore, this project was developed having this in mind, with the objective to
 * Data is being displayed in the form of a heatmap and a list. The list displays job data sorted by the percentage of keywords matched. 
   <img src=https://github.com/florin-vasiliu/dice_scraping/blob/master/images/TableauDashboard.JPG> |
   ---|
-  Fig.3: Job description example
+  Fig.4: Description of Tableau dashboard
   
 * Data can be filtered by location by dragging and dropping the cursor on the desired area
   <img src=https://media.giphy.com/media/F8L4UlK9Ej40IH6Qag/giphy.gif> |
   ---|
-  Fig.4: Filtering by dragging and dropping
+  Fig.5: Filtering by dragging and dropping
 
 * Job description can be accessed by clicking on the "Job_Description_Link" column of the list.
 
