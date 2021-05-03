@@ -1,20 +1,20 @@
 # Dice Scraping
 
 ## Problem description and Objective
-From the perspective of a job seeker willing to relocate in order to find the perfect job, it is very time consuming to navigate through a website by querying keywords for different locations and reading through the job desctiptions individually.
-Therefore, this project was developed having this in mind, with the objective to collect job data using keywords, sort these jobs according to the number of matched keywords, and plot them on a map.
+From the perspective of a job seeker willing to relocate in order to find the perfect job, it is very time consuming to navigate through website similar to Dice. The user needs to query keywords and different locations, get a list of jobs for that keyword/location, and finally to read through the job descriptions individually.
+To solve this problem, the project has the objective to collect job data using a list of keywords, sort the resulting jobs according to the number of matched keywords, and plot them on a map, so that the user can quick filter just by dragging a dropping.
 
 ## Project development
 
 ### 1. Data Scraping:
 
-* Job cards are being scraped using keywords.
+* Job cards are being scraped using a list of keywords.
 
  <img src=https://github.com/florin-vasiliu/dice_scraping/blob/master/images/JobCards.JPG>|
  ---|
- Fig.1: Keyword insertion field and example of card data
+ Fig.1: Individual keyword insertion field and example of card data
  
-* In order to prevent requesting unnecessarily duplicate job descriptions, the database is queried first with the card data attributes. If data attributes ("JobTitle", "JobCompany", "JobLocation" and "JobDate") are found in the database, job description request is being skiped.
+* In order to prevent requesting unnecessarily duplicate job descriptions, the local database is queried first with the card data attributes. If data attributes ("JobTitle", "JobCompany", "JobLocation" and "JobDate") are found in the database, job description request is being skiped.
  
   <img src=https://github.com/florin-vasiliu/dice_scraping/blob/master/images/DatabaseSchema.JPG> |
   ---|
