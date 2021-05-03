@@ -2,7 +2,7 @@
 
 ## Problem description and Objective
 From the perspective of a job seeker willing to relocate in order to find the perfect job, it is very time consuming to navigate through website similar to Dice. The user needs to query keywords and different locations, get a list of jobs for that keyword/location, and finally to read through the job descriptions individually.
-To solve this problem, the project has the objective to collect job data using a list of keywords, sort the resulting jobs according to the number of matched keywords, and plot them on a map, so that the user can quick filter just by dragging a dropping.
+To solve this problem, the project has the objective to collect job data using a list of keywords, sort the resulting jobs according to the number of matched keywords, and plot them on a map, so that the user can quick filter just by dragging and dropping.
 
 ## Project development
 
